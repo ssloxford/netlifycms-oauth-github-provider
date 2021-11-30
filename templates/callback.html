@@ -1,0 +1,15 @@
+<html>
+	<body>
+		<script>
+			(function() {
+				function recieveMessage(e) {
+					console.log("recieveMessage %o", e)
+					window.opener.postMessage('{{ post_message|safe }}', e.origin)
+				}
+				window.addEventListener("message", recieveMessage, false)
+				console.log("Sending message: %o", "github")
+				window.opener.postMessage("authorizing:github", "*")
+			})()
+		</script>
+	</body>
+</html>
