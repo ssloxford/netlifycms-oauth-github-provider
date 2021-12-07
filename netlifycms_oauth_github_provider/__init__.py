@@ -49,6 +49,14 @@ class StateStore:
 
 store = StateStore()
 
+@app.get("/")
+def index(request: Request):
+    return templates.TemplateResponse(
+        "index.html",
+        {
+            "request": request,
+        })
+
 @app.get("/auth")
 def auth():
     github = OAuth2Session(settings.client_id, scope=settings.scope)
